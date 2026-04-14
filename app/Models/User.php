@@ -22,6 +22,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'role',
         'email',
+        'active',
         'password',
     ];
 
@@ -43,6 +44,7 @@ class User extends Authenticatable implements JWTSubject
     protected function casts(): array
     {
         return [
+            'active' => 'boolean',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
@@ -54,6 +56,23 @@ class User extends Authenticatable implements JWTSubject
 
      public function getJWTCustomClaims()
     {
-        return [];
+        return ['role' => $this->role,
+        ];
     }
+
+         public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isCajero(): bool
+    {
+        return $this->role === 'cajero';
+    }
+
+    public function isTrabajador(): bool
+    {
+        return $this->role === 'trabajador';
+    }
+
 }
