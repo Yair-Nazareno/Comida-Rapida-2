@@ -16,13 +16,13 @@ class TableResource extends JsonResource
             'numero'   => $this->resource->number,
             'capacidad' => $this->resource->capacity,
 
-            // Estado con etiqueta legible
+             //Estado con etiqueta legible
             'estado'   => $this->resource->status,
             'estado_display' => $this->getStatusDisplay(),
 
             'activo'   => $this->resource->active,
 
-            // Si está disponible para asignar
+             //Si está disponible para asignar
             'disponible' => $this->resource->isAvailable(),
 
             'creado_en' => $this->resource->created_at->format('d/m/Y'),
